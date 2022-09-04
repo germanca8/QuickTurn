@@ -89,4 +89,14 @@ class EntidadListScreen extends Screen
         ];
     }
 
+    /**
+     * @param Request $request
+     */
+    public function remove(Request $request): void
+    {
+        Entidad::findOrFail($request->get('id'))->delete();
+
+        Toast::info(__('La entidad se ha eliminado.'));
+    }
+
 }

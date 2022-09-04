@@ -87,13 +87,10 @@
                                 ><a class="p-2 pt-2 pb-2" href="{{route('verTurnoCliente', [$seccion->id, $invitado]) }}">Mostrar turno</a>
                                 </button>
                             </div>
-
                         </div>
-
                     </div>
                 @endforeach
             </div>
-
         </div>
     </section>
 

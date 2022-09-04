@@ -47,3 +47,14 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('turnos/{seccion}',[TurnoController::class,'turnosSeccion'])->name('turnosSeccion');
     Route::delete('turnos/{seccion}/eliminar',[TurnoController::class,'destroyAllFromSeccion'])->name('destroyAllFromSeccion');
 });
+
+
+
+
+
+
+
+
+
+
+

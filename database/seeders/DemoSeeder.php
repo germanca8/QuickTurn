@@ -216,12 +216,40 @@ class DemoSeeder extends Seeder
 
                 $turno152 = new Turno();
                 $turno152->seccion_id = $seccion15->id;
-                $turno152->invitado_id = $invitado5->id;
+                $turno152->invitado_id = $invitado2->id;
                 $turno152->numTurno = '2';
-                $turno152->fechaTurno = '2022-08-24 17:26:52';
+                $turno152->fechaTurno = '2022-08-24 17:26:41';
                 $turno152->save();
 
-        $seccion15->ultimoTurno = '2';
+                $turno153 = new Turno();
+                $turno153->seccion_id = $seccion15->id;
+                $turno153->invitado_id = $invitado5->id;
+                $turno153->numTurno = '3';
+                $turno153->fechaTurno = '2022-08-24 17:32:09';
+                $turno153->save();
+
+                $turno154 = new Turno();
+                $turno154->seccion_id = $seccion15->id;
+                $turno154->invitado_id = $invitado4->id;
+                $turno154->numTurno = '4';
+                $turno154->fechaTurno = '2022-08-24 17:34:45';
+                $turno154->save();
+
+                $turno155 = new Turno();
+                $turno155->seccion_id = $seccion15->id;
+                $turno155->invitado_id = $invitado6->id;
+                $turno155->numTurno = '5';
+                $turno155->fechaTurno = '2022-08-24 17:46:12';
+                $turno155->save();
+
+                $turno156 = new Turno();
+                $turno156->seccion_id = $seccion15->id;
+                $turno156->invitado_id = $invitado3->id;
+                $turno156->numTurno = '6';
+                $turno156->fechaTurno = '2022-08-24 17:52:51';
+                $turno156->save();
+
+        $seccion15->ultimoTurno = '6';
         $seccion15->save();
 
         ////////////////////////////////////////////////////////////////////DIA

@@ -121,9 +121,10 @@ class EntidadEditScreen extends Screen
      */
     public function remove(Entidad $entidad)
     {
+
         $entidad->delete();
 
-        Toast::info(__('La Entidad se ha eliminado.'));
+        Toast::info(__('La entidad se ha eliminado.'));
         return redirect()->route('platform.systems.entidads');
     }
 }

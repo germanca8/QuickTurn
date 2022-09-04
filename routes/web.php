@@ -46,3 +46,8 @@ Route::get('turnos/{seccion}/invitado/{invitado}/solicitaTurnoCliente',[ViewCont
 Route::get('turnos/{seccion}/invitado/{invitado}/verTurnoCliente',[ViewController::class,'verTurnoCliente'])->name('verTurnoCliente')->withoutMiddleware('can');
 
 
+
+
+
+
+

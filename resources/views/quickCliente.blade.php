@@ -57,7 +57,7 @@
              style="height: 40vh; color: #FFFFFF">
         <div class="container px-2 pt-2 pb-2 mt-3 mb-4"
              style="background-color: #9ED2C6; opacity: 0.7; height: 100%; border: 2px; border-radius:0.5rem">
-            <h2 class="text-center mb-3"
+            <h2 class="text-center mb-4"
                 style="height: 10%; font-weight: bold;">Acerca de @yield('nombreEntidad')
             </h2>
             <div style="height: 86%; display: flow">
