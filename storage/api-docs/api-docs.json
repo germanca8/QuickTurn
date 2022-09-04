@@ -1,0 +1,1624 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Quick Turn",
+        "description": "Documentación de API QuickTurn",
+        "contact": {
+            "email": "germanca8@correo.ugr.es"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0",
+        "x-logo": {
+            "url": "https://via.placeholder.com/190x90.png?text=L5-Swagger"
+        }
+    },
+    "paths": {
+        "/api/entidads": {
+            "get": {
+                "tags": [
+                    "Entidades"
+                ],
+                "summary": "Lista todas las entidades",
+                "description": "Endpoint para listar las entidades",
+                "operationId": "af183242f5116da6bbbf4bb9e173cb8a",
+                "responses": {
+                    "200": {
+                        "description": "Lista todas las entidades",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Entidad"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Entidades"
+                ],
+                "summary": "Crea una entidad",
+                "description": "Endpoint para almacenar una entidad",
+                "operationId": "d43f9fa19a6c72fefbb3a2da23d878d2",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/StoreEntidad"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Entidad creada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Entidad"
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "$ref": "#/components/responses/444"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/entidads/{entidadID}": {
+            "get": {
+                "tags": [
+                    "Entidades"
+                ],
+                "summary": "Muestra una entidad por ID",
+                "description": "Endpoint para mostrar una entidad",
+                "operationId": "50f97ed6b2cf7ce4bcab86c008919785",
+                "parameters": [
+                    {
+                        "name": "entidadID",
+                        "in": "path",
+                        "description": "ID de la entidad a obtener",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalles de la entidad",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Entidad"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Entidades"
+                ],
+                "summary": "Elimina una entidad",
+                "description": "Endpoint para eliminar una entidad",
+                "operationId": "df04696ecc5eb575caf2b9fe498c9ea9",
+                "parameters": [
+                    {
+                        "name": "entidadID",
+                        "in": "path",
+                        "description": "ID de la entidad a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Entidad eliminada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "deleted": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Entidades"
+                ],
+                "summary": "Actualiza una entidad",
+                "description": "Endpoint para actualizar una entidad",
+                "operationId": "87b193862ebc772296b93f68d7e0e592",
+                "parameters": [
+                    {
+                        "name": "entidadID",
+                        "in": "path",
+                        "description": "ID de la entidad a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UpdateEntidad"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Entidad actualizada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Entidad"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/entidads/users": {
+            "post": {
+                "tags": [
+                    "Entidades"
+                ],
+                "summary": "Lista todas las entidades de 1 usuario",
+                "description": "Endpoint para mostrar todas las entidades asociadas a un usuario",
+                "operationId": "b4ced2a29f48d7b70615567255bd5e96",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/EntidadRequest"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Lista todas las entidades de 1 usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Entidad"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/invitados": {
+            "post": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Crea un invitado",
+                "description": "Endpoint para crear un invitado",
+                "operationId": "b67975560004191af5cbe9f8833902ea",
+                "responses": {
+                    "200": {
+                        "description": "Invitado creado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Invitado"
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "$ref": "#/components/responses/444"
+                    }
+                }
+            }
+        },
+        "/api/turnos/{seccionID}/invitado/{invitadoID}/solicitaTurno": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Solicita un turno",
+                "description": "Endpoint para crear un turno",
+                "operationId": "60df4ddd6ffff8a864ddc6432fd50c23",
+                "parameters": [
+                    {
+                        "name": "seccionID",
+                        "in": "path",
+                        "description": "ID de la sección",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "invitadoID",
+                        "in": "path",
+                        "description": "ID del invitado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Turno solicitado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Turno"
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "$ref": "#/components/responses/444"
+                    }
+                }
+            }
+        },
+        "/api/turnos/{seccionID}/invitado/{invitadoID}/verTurno": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Imprime el turno actual del invitado para una seccion",
+                "description": "Endpoint para ver el turno actual del cliente",
+                "operationId": "9ebc66a972309f59d56fbd4e508c036d",
+                "parameters": [
+                    {
+                        "name": "seccionID",
+                        "in": "path",
+                        "description": "ID de la sección",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "invitadoID",
+                        "in": "path",
+                        "description": "ID del invitado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Turno impreso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Turno"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/seccions": {
+            "get": {
+                "tags": [
+                    "Secciones"
+                ],
+                "summary": "Lista todas las secciones",
+                "description": "Endpoint para listar las secciones",
+                "operationId": "00d9d7129146c7a604a5be6ec4a6868a",
+                "responses": {
+                    "200": {
+                        "description": "Lista todas las secciones",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Seccion"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Secciones"
+                ],
+                "summary": "Crea una seccion",
+                "description": "Endpoint para almacenar una seccion",
+                "operationId": "ee1a1facee020ed58a95693b24abab6d",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/StoreSeccion"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Seccion creada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Seccion"
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "$ref": "#/components/responses/444"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/seccions/{seccionID}": {
+            "get": {
+                "tags": [
+                    "Secciones"
+                ],
+                "summary": "Muestra una seccion por ID",
+                "description": "Endpoint para mostrar una seccion",
+                "operationId": "850451b466dff0c6ea019d1f23b5075f",
+                "parameters": [
+                    {
+                        "name": "seccionID",
+                        "in": "path",
+                        "description": "ID de la seccion a obtener",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalles de la seccion",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Seccion"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Secciones"
+                ],
+                "summary": "Elimina una seccion",
+                "description": "Endpoint para eliminar una seccion",
+                "operationId": "aa4efa7b498eeba7538041e8efff96b6",
+                "parameters": [
+                    {
+                        "name": "seccionID",
+                        "in": "path",
+                        "description": "ID de la seccion a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Seccion eliminada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "deleted": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Secciones"
+                ],
+                "summary": "Actualiza una seccion",
+                "description": "Endpoint para actualizar una seccion",
+                "operationId": "7fb08100a6563394fc35c452f827fb49",
+                "parameters": [
+                    {
+                        "name": "seccionID",
+                        "in": "path",
+                        "description": "ID de la seccion a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UpdateSeccion"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Seccion actualizada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Seccion"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/seccions/{seccion}/aumentarTurnoActual": {
+            "post": {
+                "tags": [
+                    "Trabajadores"
+                ],
+                "summary": "Aumenta el turno actual de la sección",
+                "description": "Endpoint para aumentar el turno actual de la sección",
+                "operationId": "54f1fee6fa060284a70564cf1f81c8dc",
+                "parameters": [
+                    {
+                        "name": "seccion",
+                        "in": "path",
+                        "description": "ID de la seccion a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Turno aumentado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Seccion"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/seccions/{seccion}/verTurnoActual": {
+            "get": {
+                "tags": [
+                    "Trabajadores"
+                ],
+                "summary": "Imprime el turno actual de la sección",
+                "description": "Endpoint para ver el turno actual de la sección",
+                "operationId": "bd4064589ae2338d259b7091ee3ef304",
+                "parameters": [
+                    {
+                        "name": "seccion",
+                        "in": "path",
+                        "description": "ID de la seccion de la que quiero el turno",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Turno impreso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Seccion"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/seccions/{entidadID}": {
+            "post": {
+                "tags": [
+                    "Secciones"
+                ],
+                "summary": "Lista todas las secciones de 1 entidad",
+                "description": "Endpoint para mostrar todas las secciones asociadas a una entidad",
+                "operationId": "f26d05de4f28df05c40eef7a167e963d",
+                "parameters": [
+                    {
+                        "name": "entidadID",
+                        "in": "path",
+                        "description": "ID de la entidad",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista todas las secciones de 1 entidad",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Seccion"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/turnos": {
+            "get": {
+                "tags": [
+                    "Turnos"
+                ],
+                "summary": "Lista todas los turnos",
+                "description": "Endpoint para listar los turnos",
+                "operationId": "6adc8ab3972fa2e0a40a9ddec9b865b9",
+                "responses": {
+                    "200": {
+                        "description": "Lista todas los turnos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Turno"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Turnos"
+                ],
+                "summary": "Crea un turno",
+                "description": "Endpoint para almacenar un turno",
+                "operationId": "99bc216a5722c88def2faab3dfae2a13",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/StoreTurno"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Turno creado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Turno"
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "$ref": "#/components/responses/444"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/turnos/{turnoID}": {
+            "get": {
+                "tags": [
+                    "Turnos"
+                ],
+                "summary": "Muestra un turno por ID",
+                "description": "Endpoint para mostrar un turno",
+                "operationId": "699035c27931dc669dac2f892f00e894",
+                "parameters": [
+                    {
+                        "name": "turnoID",
+                        "in": "path",
+                        "description": "ID del turno a obtener",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalles del turno",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Turno"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Turnos"
+                ],
+                "summary": "Elimina un turno",
+                "description": "Endpoint para eliminar un turno",
+                "operationId": "b555e1b000489a87c4e7bf6d8472add3",
+                "parameters": [
+                    {
+                        "name": "turnoID",
+                        "in": "path",
+                        "description": "ID del turno a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Turno eliminada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "deleted": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Turnos"
+                ],
+                "summary": "Actualiza un turno",
+                "description": "Endpoint para actualizar un turno",
+                "operationId": "facac0d2429ef5eb6263c29342001480",
+                "parameters": [
+                    {
+                        "name": "turnoID",
+                        "in": "path",
+                        "description": "ID del turno a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UpdateTurno"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Turno actualizada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Turno"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/turnos/{seccionID}": {
+            "post": {
+                "tags": [
+                    "Turnos"
+                ],
+                "summary": "Lista todos los turnos de 1 seccion",
+                "description": "Endpoint para mostrar todas los turnos asociadas a una seccion",
+                "operationId": "acebe29969101c30f7c5a8501fc43432",
+                "parameters": [
+                    {
+                        "name": "seccionID",
+                        "in": "path",
+                        "description": "ID de la sección",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista todos los turnos de 1 seccion",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Turno"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/turnos/{seccionID}/eliminar": {
+            "delete": {
+                "tags": [
+                    "Turnos"
+                ],
+                "summary": "Elimina todos los turnos de una sección",
+                "description": "Endpoint para eliminar un turno",
+                "operationId": "492ab0d1708b1f1c6853542f70bfc588",
+                "parameters": [
+                    {
+                        "name": "seccionID",
+                        "in": "path",
+                        "description": "ID de la seccion",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Turnos eliminados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "deleted": {
+                                            "type": "boolean",
+                                            "example": "true"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Session"
+                ],
+                "summary": "Log user",
+                "description": "Log the user and response his token",
+                "operationId": "0fc9610184083ac6dddab2c63139225a",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UserLogin"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Logued User",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "ads12389dsah1nd180"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/invitados-store": {
+            "post": {
+                "summary": "Crea un invitado",
+                "description": "Endpoint para crear un invitado",
+                "operationId": "33757233b2b7a09e05cac16bcb5870be",
+                "responses": {
+                    "200": {
+                        "description": "Invitado creado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Invitado"
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "$ref": "#/components/responses/444"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Entidad": {
+                "properties": {
+                    "id": {
+                        "description": "Id asociado",
+                        "type": "string",
+                        "example": "670b9562-b30d-52d5-b827-655787665500"
+                    },
+                    "user_id": {
+                        "description": "Id del usuario",
+                        "type": "string",
+                        "example": "670b9562-b30d-52d5-b827-655787665500"
+                    },
+                    "nombreEntidad": {
+                        "description": "Nombre de la entidad",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Mercadona"
+                    },
+                    "direccionEntidad": {
+                        "description": "Direccion de la entidad",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Calle Colon"
+                    },
+                    "horarioEntidad": {
+                        "description": "Horario de la entidad",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "9h - 21h"
+                    },
+                    "nombreFiscal": {
+                        "description": "Nombre legal de la entidad",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Mercadona SA"
+                    },
+                    "nif": {
+                        "description": "Documento oficial de la entidad",
+                        "type": "string",
+                        "default": null,
+                        "maxLength": 255,
+                        "example": "11122233P"
+                    },
+                    "url": {
+                        "description": "URL de la web de la entidad",
+                        "type": "string",
+                        "example": "https://www.mercadona.es/"
+                    },
+                    "created_at": {
+                        "description": "Fecha de creación",
+                        "type": "string",
+                        "example": "2022-03-15T13:23:02.000000Z"
+                    },
+                    "updated_at": {
+                        "description": "Fecha de última modificación",
+                        "type": "string",
+                        "example": "2022-03-15T13:23:02.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "Invitado": {
+                "properties": {
+                    "id": {
+                        "description": "Id asociado",
+                        "type": "string",
+                        "example": "670b9562-b30d-52d5-b827-655787665500"
+                    },
+                    "created_at": {
+                        "description": "Fecha de creación",
+                        "type": "string",
+                        "example": "2022-03-15T13:23:02.000000Z"
+                    },
+                    "updated_at": {
+                        "description": "Fecha de última modificación",
+                        "type": "string",
+                        "example": "2022-03-15T13:23:02.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "Seccion": {
+                "properties": {
+                    "id": {
+                        "description": "Id asociado",
+                        "type": "string",
+                        "example": "670b9562-b30d-52d5-b827-655787665500"
+                    },
+                    "entidad_id": {
+                        "description": "Id de la entidad",
+                        "type": "string",
+                        "example": "670b9562-b30d-52d5-b827-655787665500"
+                    },
+                    "nombreSeccion": {
+                        "description": "Nombre de la seccion",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Mercadona"
+                    },
+                    "turnoActual": {
+                        "description": "Numero del turno actual",
+                        "type": "integer",
+                        "maxLength": 52,
+                        "example": "363"
+                    },
+                    "ultimoTurno": {
+                        "description": "Numero del ultimo turno",
+                        "type": "integer",
+                        "maxLength": 52,
+                        "example": "363"
+                    },
+                    "created_at": {
+                        "description": "Fecha de creación",
+                        "type": "string",
+                        "example": "2022-03-15T13:23:02.000000Z"
+                    },
+                    "updated_at": {
+                        "description": "Fecha de última modificación",
+                        "type": "string",
+                        "example": "2022-03-15T13:23:02.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "Turno": {
+                "properties": {
+                    "id": {
+                        "description": "Id asociado",
+                        "type": "string",
+                        "example": "670b9562-b30d-52d5-b827-655787665500"
+                    },
+                    "seccion_id": {
+                        "description": "Id de la seccion",
+                        "type": "string",
+                        "example": "670b9562-b30d-52d5-b827-655787665500"
+                    },
+                    "invitado_id": {
+                        "description": "Id del invitado",
+                        "type": "string",
+                        "example": "670b9562-b30d-52d5-b827-655787665500"
+                    },
+                    "numTurno": {
+                        "description": "Numero de turno",
+                        "type": "integer",
+                        "maxLength": 255,
+                        "example": "1"
+                    },
+                    "fechaTurno": {
+                        "description": "Fecha y hora de solicitud de turno",
+                        "type": "string",
+                        "maxLength": 52,
+                        "example": "2022-03-15T13:23:02.000000Z"
+                    },
+                    "created_at": {
+                        "description": "Fecha de creación",
+                        "type": "string",
+                        "example": "2022-03-15T13:23:02.000000Z"
+                    },
+                    "updated_at": {
+                        "description": "Fecha de última modificación",
+                        "type": "string",
+                        "example": "2022-03-15T13:23:02.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "properties": {
+                    "id": {
+                        "description": "Id asociado",
+                        "type": "string",
+                        "example": "670b9562-b30d-52d5-b827-655787665500"
+                    },
+                    "name": {
+                        "description": "Nombre de usuario",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "pepe32"
+                    },
+                    "fullName": {
+                        "description": "Nombre completo",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Pepe Casas Ortiz"
+                    },
+                    "dni": {
+                        "description": "Documento de identidad",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "11223344A"
+                    },
+                    "telefono": {
+                        "description": "Numero de telefono",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "654781923"
+                    },
+                    "domicilio": {
+                        "description": "Direccion habitual",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Calle Gran Via"
+                    },
+                    "email": {
+                        "description": "Email del usuario",
+                        "type": "string",
+                        "default": null,
+                        "maxLength": 255,
+                        "example": "me@me.com"
+                    },
+                    "email_verified_at": {
+                        "description": "Fecha de verificación del email",
+                        "type": "string",
+                        "default": null,
+                        "example": "2022-03-15T13:23:02.000000Z"
+                    },
+                    "password": {
+                        "description": "Contraseña",
+                        "type": "string",
+                        "example": "password"
+                    },
+                    "created_at": {
+                        "description": "Fecha de creación",
+                        "type": "string",
+                        "example": "2022-03-15T13:23:02.000000Z"
+                    },
+                    "updated_at": {
+                        "description": "Fecha de última modificación",
+                        "type": "string",
+                        "example": "2022-03-15T13:23:02.000000Z"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "422": {
+                "description": "Validation error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                },
+                                "errors": {
+                                    "properties": {
+                                        "field": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "404": {
+                "description": "No query results for model",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "444": {
+                "description": "Name its already used",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Name is already used"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "requestBodies": {
+            "EntidadRequest": {
+                "description": "ID de la entidad",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "id"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "$ref": "#/components/schemas/Entidad/properties/id"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "StoreEntidad": {
+                "description": "Entidad que necesita ser creada",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "user_id",
+                                "nombreEntidad"
+                            ],
+                            "properties": {
+                                "user_id": {
+                                    "$ref": "#/components/schemas/Entidad/properties/user_id"
+                                },
+                                "nombreEntidad": {
+                                    "$ref": "#/components/schemas/Entidad/properties/nombreEntidad"
+                                },
+                                "direccionEntidad": {
+                                    "$ref": "#/components/schemas/Entidad/properties/direccionEntidad"
+                                },
+                                "horarioEntidad": {
+                                    "$ref": "#/components/schemas/Entidad/properties/horarioEntidad"
+                                },
+                                "nombreFiscal": {
+                                    "$ref": "#/components/schemas/Entidad/properties/nombreFiscal"
+                                },
+                                "nif": {
+                                    "$ref": "#/components/schemas/Entidad/properties/nif"
+                                },
+                                "url": {
+                                    "$ref": "#/components/schemas/Entidad/properties/url"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "UpdateEntidad": {
+                "description": "Entidad que necesita ser actualizada",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "nombreEntidad"
+                            ],
+                            "properties": {
+                                "nombreEntidad": {
+                                    "$ref": "#/components/schemas/Entidad/properties/nombreEntidad"
+                                },
+                                "direccionEntidad": {
+                                    "$ref": "#/components/schemas/Entidad/properties/direccionEntidad"
+                                },
+                                "horarioEntidad": {
+                                    "$ref": "#/components/schemas/Entidad/properties/horarioEntidad"
+                                },
+                                "nombreFiscal": {
+                                    "$ref": "#/components/schemas/Entidad/properties/nombreFiscal"
+                                },
+                                "nif": {
+                                    "$ref": "#/components/schemas/Entidad/properties/nif"
+                                },
+                                "url": {
+                                    "$ref": "#/components/schemas/Entidad/properties/url"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "SeccionRequest": {
+                "description": "ID de la seccion",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "id"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "$ref": "#/components/schemas/Seccion/properties/id"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "StoreSeccion": {
+                "description": "Seccion que necesita ser creada",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "entidad_id",
+                                "nombreSeccion"
+                            ],
+                            "properties": {
+                                "entidad_id": {
+                                    "$ref": "#/components/schemas/Seccion/properties/entidad_id"
+                                },
+                                "nombreSeccion": {
+                                    "$ref": "#/components/schemas/Seccion/properties/nombreSeccion"
+                                },
+                                "turnoActual": {
+                                    "$ref": "#/components/schemas/Seccion/properties/turnoActual"
+                                },
+                                "ultimoTurno": {
+                                    "$ref": "#/components/schemas/Seccion/properties/ultimoTurno"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "UpdateSeccion": {
+                "description": "Seccion que necesita ser actualizada",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "nombreSeccion"
+                            ],
+                            "properties": {
+                                "nombreSeccion": {
+                                    "$ref": "#/components/schemas/Seccion/properties/nombreSeccion"
+                                },
+                                "turnoActual": {
+                                    "$ref": "#/components/schemas/Seccion/properties/turnoActual"
+                                },
+                                "ultimoTurno": {
+                                    "$ref": "#/components/schemas/Seccion/properties/ultimoTurno"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "StoreTurno": {
+                "description": "Turno que necesita ser creado",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "seccion_id",
+                                "invitado_id",
+                                "numTurno",
+                                "fechaTurno"
+                            ],
+                            "properties": {
+                                "seccion_id": {
+                                    "$ref": "#/components/schemas/Turno/properties/seccion_id"
+                                },
+                                "invitado_id": {
+                                    "$ref": "#/components/schemas/Turno/properties/invitado_id"
+                                },
+                                "numTurno": {
+                                    "$ref": "#/components/schemas/Turno/properties/numTurno"
+                                },
+                                "fechaTurno": {
+                                    "$ref": "#/components/schemas/Turno/properties/fechaTurno"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "TurnoRequest": {
+                "description": "ID del turno",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "id"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "$ref": "#/components/schemas/Turno/properties/id"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "UpdateTurno": {
+                "description": "Turno que necesita ser actualizado",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "numTurno",
+                                "fechaTurno"
+                            ],
+                            "properties": {
+                                "numTurno": {
+                                    "$ref": "#/components/schemas/Turno/properties/numTurno"
+                                },
+                                "fechaTurno": {
+                                    "$ref": "#/components/schemas/Turno/properties/fechaTurno"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "UserLogin": {
+                "description": "User that needs to be logued",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "email",
+                                "password"
+                            ],
+                            "properties": {
+                                "email": {
+                                    "$ref": "#/components/schemas/User/properties/email"
+                                },
+                                "password": {
+                                    "$ref": "#/components/schemas/User/properties/password"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "UserRegister": {
+                "description": "User that needs to be registered in the store",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "name",
+                                "email",
+                                "password",
+                                "confirm_password"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "$ref": "#/components/schemas/User/properties/name"
+                                },
+                                "fullName": {
+                                    "$ref": "#/components/schemas/User/properties/fullName"
+                                },
+                                "dni": {
+                                    "$ref": "#/components/schemas/User/properties/dni"
+                                },
+                                "telefono": {
+                                    "$ref": "#/components/schemas/User/properties/telefono"
+                                },
+                                "domicilio": {
+                                    "$ref": "#/components/schemas/User/properties/domicilio"
+                                },
+                                "email": {
+                                    "$ref": "#/components/schemas/User/properties/email"
+                                },
+                                "password": {
+                                    "$ref": "#/components/schemas/User/properties/password"
+                                },
+                                "confirm_password": {
+                                    "$ref": "#/components/schemas/User/properties/password"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "UserRequest": {
+                "description": "Id del usuario",
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "required": [
+                                "id"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "$ref": "#/components/schemas/User/properties/id"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Laravel Sanctum Token Auth",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
