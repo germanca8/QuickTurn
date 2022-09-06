@@ -39,12 +39,16 @@
 
     <!-- Product section-->
     <section class="m-3"
-             style="min-height: 20vh; max-height: 38vh; height: 34vh; display: flex; flex-direction: column; font-weight: bold; color: #FFFFFF">
-        <div class="container pt-2 pb-2 mt-3 mb-3" style="background-color: #9ED2C6; opacity: 0.7; height: 100%; display: flow; border: 2px; border-radius:0.25rem">
-            <h3 style="text-align: justify; font-weight: bold">@yield('nombreSeccion')</h3>
-            <h5 class="fw-normal">Turno actual: @yield('turnoActual')</h5>
-            <h5 class="fw-normal">Último turno reservado: @yield('ultimoTurno')</h5>
-            <div>
+             style="min-height: 20vh; max-height: 36vh; height: 30vh; display: flex; flex-direction: column; font-weight: bold; color: #FFFFFF">
+        <div class="container pt-2 pb-2 mt-3 mb-3" style="background-color: #9ED2C6; opacity: 0.7; height: 94%; display: flow; border: 2px; border-radius:0.25rem">
+            <h3 style="text-align: justify; font-weight: bold; height: 12%">@yield('nombreSeccion')</h3>
+            <div style="display: flex; flex-wrap: wrap; height: 16%">
+                <h5 class="fw-normal" style="height: 10%; width: 60%">Turno actual:</h5> <h5 class="fw-normal" style="height: 10%; width: 40%; font-size: 1.6rem; text-align: right;">@yield('turnoActual')</h5>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; height: 16%">
+                <h5 class="fw-normal" style="height: 10%; width: 80%">Último turno reservado:</h5><h5 class="fw-normal" style="height: 10%; width: 20%; font-size: 1.6rem; text-align: right;">@yield('ultimoTurno')</h5>
+            </div>
+            <div style="height: 50%" class="mt-2">
                 <button class="btn flex-shrink-0 mb-2"
                         style="background-color: #318C8B; width: 100%; text-underline: none"
                         type="button"
