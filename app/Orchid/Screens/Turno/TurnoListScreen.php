@@ -55,7 +55,10 @@ class TurnoListScreen extends Screen
      */
     public function commandBar(): iterable
     {
-        return [];
+        return [
+            Link::make(__('Export to csv'))
+                ->icon('arrow-down-circle')
+                ->route('platform.systems.turnos.export')];
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SeccionsExport;
+use App\Exports\TurnosExport;
 use App\Http\Requests\SeccionRequest\SeccionRequest;
 use App\Http\Requests\TurnoRequest\StoreTurnoRequest;
 use App\Http\Requests\TurnoRequest\UpdateTurnoRequest;
@@ -10,6 +12,7 @@ use App\Models\Seccion;
 use App\Models\Turno;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TurnoController extends Controller
 {
@@ -237,5 +240,13 @@ class TurnoController extends Controller
         $seccion->save();
 
         return new JsonResponse(['Turnos borrados de la sección: ' => $seccion->nombreSeccion]);
+    }
+
+    /**
+     * Endpoint to show all clients
+     */
+    public function export()
+    {
+        return Excel::download(new TurnosExport(),'turnos.xlsx');
     }
 }

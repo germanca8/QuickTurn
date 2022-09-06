@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DataExport;
+use App\Exports\SeccionsExport;
 use App\Http\Requests\EntidadRequest\EntidadRequest;
 use App\Http\Requests\SeccionRequest\SeccionRequest;
 use App\Http\Requests\SeccionRequest\StoreSeccionRequest;
@@ -12,6 +14,7 @@ use App\Models\Turno;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SeccionController extends Controller
 {
@@ -273,5 +276,13 @@ class SeccionController extends Controller
     {
         $seccion = Seccion::where('entidad_id',$entidad->id)->get();
         return new JsonResponse($seccion);
+    }
+
+    /**
+     * Endpoint to show all clients
+     */
+    public function export()
+    {
+        return Excel::download(new SeccionsExport(),'secciones.xlsx');
     }
 }

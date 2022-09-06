@@ -84,7 +84,7 @@
                             <div style="height: 60%; width: 30%">
                                 <button class="btn flex-shrink-0 p-0 mt-3 mb-2"
                                         style="background-color: #318C8B; width: 90%; text-underline: none;"
-                                ><a class="p-2 pt-2 pb-2" href="{{route('verTurnoCliente', [$seccion->id, $invitado]) }}">Mostrar turno</a>
+                                ><a class="p-2 pt-2 pb-2" href="{{route('verTurnoCliente', [$seccion->id, $invitado]) }}">Actualizar turno</a>
                                 </button>
                             </div>
                         </div>
