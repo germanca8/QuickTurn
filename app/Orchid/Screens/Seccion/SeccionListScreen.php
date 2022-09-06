@@ -59,7 +59,11 @@ class SeccionListScreen extends Screen
         return [
             Link::make(__('Add'))
                 ->icon('plus')
-                ->route('platform.systems.seccions.create')
+                ->route('platform.systems.seccions.create'),
+
+            Link::make(__('Export to csv'))
+                ->icon('arrow-down-circle')
+                ->route('platform.systems.seccions.export')
         ];
     }
 

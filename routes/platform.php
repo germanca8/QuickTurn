@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\SeccionController;
+use App\Http\Controllers\TurnoController;
 use App\Orchid\Screens\Entidad\EntidadCreateScreen;
 use App\Orchid\Screens\Entidad\EntidadEditScreen;
 use App\Orchid\Screens\Entidad\EntidadListScreen;
@@ -132,6 +134,16 @@ Route::screen('seccions/create', SeccionCreateScreen::class)
             ->push(__('Create'), route('platform.systems.seccions.create'));
     });
 
+// Platform > System > Seccions > export
+Route::screen('seccions/export/', SeccionListScreen::class)
+    ->name('platform.systems.seccions.export')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.index')
+            ->push(__('Seccions export'), route('platform.systems.seccions.export'));
+    });
+Route::get('seccions/export', [SeccionController::class, 'export']);
+
 // Platform > System > Turnos > Turno
 Route::screen('turnos', TurnoListScreen::class)
     ->name('platform.systems.turnos')
@@ -140,4 +152,14 @@ Route::screen('turnos', TurnoListScreen::class)
             ->parent('platform.index')
             ->push(__('Turnos'), route('platform.systems.turnos'));
     });
+
+// Platform > System > Turnos > export
+Route::screen('turnos/export/', TurnoListScreen::class)
+    ->name('platform.systems.turnos.export')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.index')
+            ->push(__('Turnos export'), route('platform.systems.turnos.export'));
+    });
+Route::get('turnos/export', [TurnoController::class, 'export']);
 

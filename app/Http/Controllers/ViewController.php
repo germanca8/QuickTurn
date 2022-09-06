@@ -103,7 +103,7 @@ class ViewController extends Controller
 
     public function verTurnoCliente(Seccion $seccion, Invitado $invitado)
     {
-        $entidad = Entidad::where('id', '=', $seccion->entidad_id)->get();
+        /*$entidad = Entidad::where('id', '=', $seccion->entidad_id)->get();
         $turnos = Turno::where(['seccion_id' => $seccion->id, 'invitado_id' => $invitado->id])->get();
 
         $ultimoTurno = 0;
@@ -113,7 +113,8 @@ class ViewController extends Controller
             {
                 $ultimoTurno = $turno->numTurno;
             }
-        }
+        }*/
+        $entidad = Entidad::where('id', '=', $seccion->entidad_id)->get();
 
         return redirect()->route('crear', [$entidad[0]->id, $invitado]);
     }
