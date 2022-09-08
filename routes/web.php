@@ -44,7 +44,7 @@ Route::get('turno-disminuir/{seccion}',[ViewController::class,'disminuirTurnoAct
 //Sub rutas cliente
 Route::get('turnos/{seccion}/invitado/{invitado}/solicitaTurnoCliente',[ViewController::class,'solicitaTurnoCliente'])
     ->name('solicitaTurnoCliente')->withoutMiddleware('can');
-Route::get('turnos/{seccion}/invitado/{invitado}/verTurnoCliente',[ViewController::class,'verTurnoCliente'])
+Route::get('turnos/{entidad}/invitado/{invitado}/verTurnoCliente',[ViewController::class,'verTurnoCliente'])
     ->name('verTurnoCliente')->withoutMiddleware('can');
 
 

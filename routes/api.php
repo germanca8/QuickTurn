@@ -22,14 +22,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function(){
 
-    Route::post('/login',[UserController::class,'login'])->name('user.login')->withoutMiddleware('guest');
-    Route::post('seccions/{seccion}/aumentarTurnoActual',[SeccionController::class,'aumentarTurnoActual'])->withoutMiddleware('can');
-    Route::get('seccions/{seccion}/verTurnoActual',[SeccionController::class,'verTurnoActual'])->withoutMiddleware('can');
-    Route::get('turnos/{seccion}/invitado/{invitado}/solicitaTurno',[InvitadoController::class,'solicitaTurno'])->name('solicitaTurno')->withoutMiddleware('can');
-    Route::get('turnos/{seccion}/invitado/{invitado}/verTurno',[InvitadoController::class,'verTurno'])->name('verTurno')->withoutMiddleware('can');
+    Route::post('/login',[UserController::class,'login'])
+        ->name('user.login')->withoutMiddleware('guest');
+    Route::post('seccions/{seccion}/aumentarTurnoActual',[SeccionController::class,'aumentarTurnoActual'])
+        ->withoutMiddleware('can');
+    Route::get('seccions/{seccion}/verTurnoActual',[SeccionController::class,'verTurnoActual'])
+        ->withoutMiddleware('can');
+    Route::get('turnos/{seccion}/invitado/{invitado}/solicitaTurno',[InvitadoController::class,'solicitaTurno'])
+        ->name('solicitaTurno')->withoutMiddleware('can');
+    Route::get('turnos/{seccion}/invitado/{invitado}/verTurno',[InvitadoController::class,'verTurno'])
+        ->name('verTurno')->withoutMiddleware('can');
 
 
-    Route::get('invitados-store/{entidad}',[ViewController::class,'storeInvitado'])->name('invitados.storeInvitado')->withoutMiddleware('can');
+    Route::get('invitados-store/{entidad}',[ViewController::class,'storeInvitado'])->name('invitados.storeInvitado')
+        ->withoutMiddleware('can');
 
     Route::apiResource('entidads',EntidadController::class)->except('store','update');
     Route::apiResource('seccions',SeccionController::class)->except('store','update');
@@ -42,10 +48,12 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('seccions',SeccionController::class);
     Route::apiResource('turnos',TurnoController::class);
 
-    Route::post('entidads/users',[EntidadController::class,'entidadsUser'])->name('entidadsUser');
+    Route::post('entidads/users',[EntidadController::class,'entidadsUser'])
+        ->name('entidadsUser');
     Route::post('seccions/{entidad}',[SeccionController::class,'seccionsEntidad'])->name('seccionsEntidad');
     Route::post('turnos/{seccion}',[TurnoController::class,'turnosSeccion'])->name('turnosSeccion');
-    Route::delete('turnos/{seccion}/eliminar',[TurnoController::class,'destroyAllFromSeccion'])->name('destroyAllFromSeccion');
+    Route::delete('turnos/{seccion}/eliminar',[TurnoController::class,'destroyAllFromSeccion'])
+        ->name('destroyAllFromSeccion');
 });
 
 

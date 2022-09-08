@@ -48,14 +48,20 @@
                 @yield('nombreEntidad')
             </h2>
 
-            <div style="height: 92%; display: flow; overflow-y: scroll">
+            <div class="text-center mb-2"
+                 style="height: 8%; font-weight: bold;">
+                <button class="btn flex-shrink-0 p-1 mt-1 mb-2"
+                        style="background-color: #318C8B; width: 80%; text-underline: none;"
+                ><a class="p-2 pt-1 pb-1" href="{{route('verTurnoCliente', [$entidad, $invitado]) }}">Actualizar turnos</a>
+                </button>
+            </div>
+
+            <div style="height: 82%; display: flow; overflow-y: scroll">
                 @foreach($secciones as $seccion)
                     <div class="card m-1 mb-2 pb-2 pt-2" style=" background-color: #54BAB9; height: 8rem; font-weight: normal;">
-                        <h3 class="mb-0" style="text-align: center; font-size: 1rem">{{ $seccion->nombreSeccion }}</h3>
-                        <div style="display: flex; flex-wrap: wrap;">
-                            <div style="height: 80%; width: 40%" class="mt-2">
-                                <p class=" m-2 mt-1 mb-0" style="height: 26%; text-align: left; font-size: 1rem">TURNOS</p>
-                                <p class=" m-2 mt-0 mb-0" style="height: 26%; text-align: left; font-size: 1rem">Actual: {{ $seccion->turnoActual }}</p>
+                        <h2 class="mb-0" style="text-align: center; font-size: 1.25rem; height: 18%">{{ $seccion->nombreSeccion }}</h2>
+                        <div style="display: flex; flex-direction: column; height: 78%">
+                            <div style="display: flex; flex-wrap: wrap; height: 50%; width: 100%" class="mt-2 mb-1">
 
                                 @if( \App\Models\Turno::where('seccion_id',$seccion->id)->where('invitado_id',$invitado)->get()->isNotEmpty() )
                                     @php
@@ -68,25 +74,30 @@
                                             @endphp
                                         @endif
                                     @endforeach
-                                    <p class=" m-2 mt-0 mb-1" style="height: 26%; text-align: left; font-size: 1rem">Mio: {{ $turno->numTurno }}</p>
+                                    <div style="width: 46%; height: 94%">
+                                        <p class=" m-3 mt-0 mb-0" style="height: 40%; text-align: center; font-size: 1rem">Mi turno</p> <p class=" m-3 mt-0 mb-0" style="height: 60%; text-align: center; font-size: 1.5rem">{{ $turno->numTurno }}</p>
+                                    </div>
+
                                 @else
-                                    <p class=" m-2 mt-0 mb-1" style="height: 26%; text-align: left; font-size: 1rem">Mio: - </p>
+                                    <div style="width: 46%; height: 94%">
+                                        <p class=" m-3 mt-0 mb-0" style="height: 90%; text-align: left; font-size: 1rem">Mi turno: - </p>
+                                    </div>
+
                                 @endif
+                                <div style="width: 52%; height: 120%">
+                                    <p class="mb-0" style="height: 30%; text-align: center; font-size: 1rem">Turno Actual</p> <p class="mb-0" style="height: 60%; text-align: center; font-size: 3rem">{{ $seccion->turnoActual }}</p>
+                                </div>
+
                             </div>
 
-                            <div style="height: 60%; width: 30%">
-                                <button class="btn flex-shrink-0 p-0 mt-3 mb-2"
+                            <div style="height: 46%; width: 50%"
+                                      class="">
+                                <button class="btn flex-shrink-0 p-1 mt-1 mb-2 m-2"
                                         style="background-color: #318C8B; width: 90%; text-underline: none;"
-                                ><a class="p-2 pt-2 pb-2" href="{{route('solicitaTurnoCliente', [$seccion->id, $invitado]) }}">Solicitar turno</a>
+                                ><a class="pt-1 pb-1" style="width: 100%" href="{{route('solicitaTurnoCliente', [$seccion->id, $invitado]) }}">Solicitar turno</a>
                                 </button>
                             </div>
 
-                            <div style="height: 60%; width: 30%">
-                                <button class="btn flex-shrink-0 p-0 mt-3 mb-2"
-                                        style="background-color: #318C8B; width: 90%; text-underline: none;"
-                                ><a class="p-2 pt-2 pb-2" href="{{route('verTurnoCliente', [$seccion->id, $invitado]) }}">Actualizar turno</a>
-                                </button>
-                            </div>
                         </div>
                     </div>
                 @endforeach
