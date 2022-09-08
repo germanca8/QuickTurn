@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Seccion;
+use App\Models\Turno;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -16,7 +17,7 @@ class TurnosExport implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        return Seccion::all();
+        return Turno::all();
     }
 
     public function headings(): array
